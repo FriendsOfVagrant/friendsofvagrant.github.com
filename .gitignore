@@ -1,0 +1,29 @@
+# OS-specific
+.DS_Store
+
+# Vagrant stuff
+acceptance_config.yml
+package.box
+Vagrantfile
+.vagrant
+boxes/
+test/
+
+# Bundler/Rubygems
+.bundle
+pkg/*
+tags
+Gemfile.lock
+test/tmp/
+
+# Documentation
+_site/*
+.yardoc/
+doc/
+
+# Rubinius
+*.rbc
+
+# IDE junk
+.idea/*
+*.iml

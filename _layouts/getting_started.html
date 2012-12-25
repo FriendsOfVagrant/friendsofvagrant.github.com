@@ -1,0 +1,60 @@
+{% include header.html %}
+<div class="row">
+  <div class="span3 Module sidebar">
+    <div class="well" style="padding: 8px 0px;">
+    <ul class="nav nav-list">
+      <li{% if page.current == 'Overview' %} class="active"{% endif %}>
+        <a href="/v1/docs/getting-started/index.html">Overview</a>
+      </li>
+      <li{% if page.current == 'Why Vagrant?' %} class="active"{% endif %}>
+        <a href="/v1/docs/getting-started/why.html">Why Vagrant?</a>
+      </li>
+      <li{% if page.current == 'Introduction' %} class="active"{% endif %}>
+        <a href="/v1/docs/getting-started/introduction.html">Introduction</a>
+      </li>
+      <li{% if page.current == 'Project Setup' %} class="active"{% endif %}>
+        <a href="/v1/docs/getting-started/setup.html">Project Setup</a>
+      </li>
+      <li{% if page.current == 'Boxes' %} class="active"{% endif %}>
+        <a href="/v1/docs/getting-started/boxes.html">Boxes</a>
+      </li>
+      <li{% if page.current == 'SSH' %} class="active"{% endif %}>
+        <a href="/v1/docs/getting-started/ssh.html">SSH</a>
+      </li>
+      <li{% if page.current == 'Provisioning' %} class="active"{% endif %}>
+        <a href="/v1/docs/getting-started/provisioning.html">Provisioning</a>
+      </li>
+      <li{% if page.current == 'Port Forwarding' %} class="active"{% endif %}>
+        <a href="/v1/docs/getting-started/ports.html">Port Forwarding</a>
+      </li>
+      <li{% if page.current == 'Packaging' %} class="active"{% endif %}>
+        <a href="/v1/docs/getting-started/packaging.html">Packaging</a>
+      </li>
+      <li{% if page.current == 'Teardown' %} class="active"{% endif %}>
+        <a href="/v1/docs/getting-started/teardown.html">Teardown</a>
+      </li>
+      <li{% if page.current == 'Rebuild Instantly' %} class="active"{% endif %}>
+        <a href="/v1/docs/getting-started/rebuild.html">Rebuild Instantly</a>
+      </li>
+    </ul>
+    </div>
+  </div>
+
+  <div class="span9">
+    {{ content }}
+
+    <ul class="pager">
+    {% if page.previous_url and page.previous %}
+        <li class="previous">
+            <a href="{{ page.previous_url }}">&larr; {{ page.previous }}</a>
+        </li>
+    {% endif %}
+    {% if page.next_url and page.next %}
+        <li class="next">
+            <a href="{{ page.next_url }}">{{ page.next }} &rarr;</a>
+        </li>
+    {% endif %}
+    </ul>
+  </div>
+</div>
+{% include footer.html %}
