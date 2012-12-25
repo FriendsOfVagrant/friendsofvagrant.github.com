@@ -1,5 +1,5 @@
 ---
 layout: homepage
-title: Virtualized development for the masses.
+title: Desenvolvimento virtualizado para todos.
 ---
 No content.
