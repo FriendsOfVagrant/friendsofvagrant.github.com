@@ -1,46 +1,48 @@
 ---
 layout: getting_started
-title: Getting Started
+title: Começando
 
-current: Overview
-next: Why Vagrant?
+current: Visão Geral
+next: Por que o Vagrant?
 next_url: /v1/docs/getting-started/why.html
 ---
-# Getting Started with Vagrant
+# Começando com o Vagrant
 
-Vagrant uses [Oracle's VirtualBox](http://www.virtualbox.org)
-to build configurable, lightweight, and portable virtual machines dynamically.
-The first couple of pages serve to introduce you to Vagrant and what it has
-to offer while the rest of the guide is a technical walkthrough for building a
-fully functional web development environment. The getting started
-guide concludes by explaining how to package the newly created vagrant environment
-so other developers can get up and running in just a couple commands.
+O Vagrant usa o [VirtualBox da Oracle](http://www.virtualbox.org)
+para criar dinamicamente máquinas virtuais configuráveis, leves e portáteis.
+O primeiro conjunto de páginas serve para introduzir você ao Vagrant e ao que
+ele tem a oferecer, enquanto o restante do guia é um passo a passo técnico para
+a construção de um ambiente de desenvolvimento web totalmente funcional. O
+guia de iniciação termina explicando como empacotar o novo ambiente que o
+vagrant criou para que outros desenvolvedores possam iniciá-lo e o colocá-lo
+para rodar com apenas alguns comandos.
 
-## Get VirtualBox
+## Obtenha o VirtualBox
 
-Vagrant depends on [Oracle's VirtualBox](http://www.virtualbox.org) to create all of
-its virtual environments. VirtualBox is a general-purpose full virtualizer for
-x86 hardware. Targeted at server, desktop and embedded use, it is a
-professional-quality virtualization solution that is also open source software.
-VirtualBox runs on **Windows**, **Mac OS X**, **Linux**, and **Solaris**.
+O Vagrant depende do [VirtualBox da Oracle](http://www.virtualbox.org) para
+criar todo o seu ambiente virtual. O VirtualBox é um virtualizador completo de
+uso geral para hardware x86. Voltado para utilização em servidores,
+desktops e dispositivos embarcados, ele é uma solução de virtualização com
+qualidade profissional, além de ser um software de código aberto. O VirtualBox
+roda no **Windows**, no **Mac OS X**, no **Linux** e no **Solaris**.
 
-Here is a link directly to the [download page](http://www.virtualbox.org/wiki/Downloads).
+Aqui está um link direto para a [página de download](http://www.virtualbox.org/wiki/Downloads).
 
-Vagrant currently supports VirtualBox 4.0.x, 4.1.x and 4.2.x.
+O Vagrant atualmente suporta o VirtualBox 4.0.x, o 4.1.x e o 4.2.x.
 
-## Install Vagrant
+## Instale o Vagrant
 
-To install Vagrant, download the appropriate package or installer from the
-[downloads page](http://downloads.vagrantup.com), and install it using standard
-operating system procedures. On Windows and Mac OS X, the `vagrant` command should
-automatically be placed on your `PATH`. On other systems, you must add `/opt/vagrant/bin`
-to your `PATH`.
+Para instalar o Vagrant, baixe o pacote ou o instalador apropriado a partir da
+[página de download](http://downloads.vagrantup.com) e faça a instalação
+usando os procedimentos padrões do sistema operacional. No Windows e no
+Mac OS X, o comando `vagrant` deve ser colocado automaticamente no seu `PATH`.
+Nos outros sistemas, você terá que adicionar `/opt/vagrant/bin` ao seu `PATH`.
 
-If a Vagrant package is not available for your platform, you can also install
-using [RubyGems](http://rubygems.org/gems/vagrant) via a `gem install vagrant`.
-But note that the packages are the preferred and best supported method of installation.
+Se um pacote Vagrant não estiver disponível para sua plataforma, você também
+pode fazer a instalação usando o a [RubyGems](http://rubygems.org/gems/vagrant)
+via `gem install vagrant`. No entanto perceba que os pacotes são os métodos de instalação preferidos e melhor suportados.
 
-## Your First Vagrant Virtual Environment
+## Seu Primeiro Ambiente Virtual com o Vagrant
 
 <pre>
 $ vagrant box add lucid32 http://files.vagrantup.com/lucid32.box
@@ -48,10 +50,10 @@ $ vagrant init lucid32
 $ vagrant up
 </pre>
 
-While the rest of the getting started guide will focus on explaining how to
-build a fully functional virtual machine to serve Rails applications, you
-should get used to the above snippet of code. After the initial setup of
-any Vagrant environment, the above is all any developer will need to create
-their development environment! Note that the above snippet does actually
-create a fully functional 512MB virtual machine running Ubuntu in the
-background, although the machine doesn't do much in this state.
+Enquanto o resto do guia de iniciação irá focar em explicar como construir uma
+máquina virtual completamente funcional para servir aplicações Rails, você
+precisa se acostumar com o trecho de código acima. Depois da configuração
+inicial de todo ambiente Vagrant, esse trecho será tudo que um desenvolvedor
+precisará para criar seu ambiente de desenvolvimento! Perceba que o trecho
+acima por fim cria uma máquina virtual totalmente funcional de 512MB que roda
+Ubuntu no background, embora a máquina não faça muita coisa nesse ponto.
