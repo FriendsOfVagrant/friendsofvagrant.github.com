@@ -1,52 +1,67 @@
 ---
 layout: getting_started
-title: Getting Started - Why Vagrant?
+title: Começando - Por que o Vagrant?
 
-current: Why Vagrant?
-previous: Overview
+current: Por que o Vagrant?
+previous: Visão Geral
 previous_url: /v1/docs/getting-started/index.html
-next: Introduction
+next: Introdução
 next_url: /v1/docs/getting-started/introduction.html
 ---
-# Why Vagrant?
+# Por que o Vagrant?
 
-Web developers use virtual environments every day with their web applications. From EC2 and Rackspace Cloud to specialized
-solutions such as EngineYard and Heroku, virtualization is the tool of choice for easy deployment and infrastructure management.
-Vagrant aims to take those very same principles and put them to work in the heart of the application lifecycle.
-By providing easy to configure, lightweight, reproducible, and portable virtual machines targeted at
-development environments, Vagrant helps maximize the productivity and flexibility of you and your team.
+Desenvolvedores web usam ambientes virtuais todo dia com suas aplicações web.
+Desde o EC2 e Rackspace Cloud até soluções especializadas como o EngineYard e o
+Heroku, a virtualização é a ferramenta preferida para facilitar a implantação 
+e o gerenciamento de infraestrutura. O Vagrant visa usar esses mesmos
+princípios e colocá-los para trabalhar no coração do ciclo de vida da
+aplicação. Por meio do fornecimento de máquinas virtuais fáceis de configurar,
+leves, reproduzíveis e portáteis, direcionadas para ambientes de
+desenvolvimento, o Vagrant ajuda a maximizar tanto sua produtividade e sua
+flexibilidade quanto as de sua equipe.
 
-Vagrant is a development tool which stands on the shoulders of giants, using tried and
-proven technologies to achieve its magic. Vagrant uses [Oracle's VirtualBox](http://www.virtualbox.org)
-to create its virtual machines and then uses [Chef](http://www.opscode.com/chef) or [Puppet](http://www.puppetlabs.com/puppet)  to provision them.
+O Vagrant é uma ferramenta de desenvolvimento que se baseia sobre os ombros de
+gigantes, usando tecnologias testadas e aprovadas para fazer sua mágica. O
+Vagrant usa o [VirtualBox da Oracle](http://www.virtualbox.org) para criar
+suas máquinas virtuais e então usa o [Chef](http://www.opscode.com/chef) ou o
+[Puppet](http://www.puppetlabs.com/puppet) para provisioná-las.
 
-## Benefits of Using Vagrant
+## Benefícios de Usar o Vagrant
 
-### For Solo Developers
+### Para Desenvolvedores Individuais
 
-Maintaining consistent development environments over multiple projects is simply an
-unfeasible task for a modern web developer. Each project depends on its own libraries,
-message queue systems, databases, frameworks, and more, each with their own versions.
-In addition to the dependencies, running all these on a single home machine and remembering
-to turn it all off at the end of the day or when working on other projects is also unfeasible.
-Vagrant gives you the tools to build unique development environments for each project once
-and then easily tear them down and rebuild them only when they're needed so you can save
-time and frustration.
+Manter ambientes de desenvolvimento consistentes ao longo de múltiplos
+projetos é simplesmente uma tarefa inviável para um desenvolvedor web moderno.
+Cada projeto depende de suas próprias bibliotecas, sistemas de fila de
+mensagens, bancos de dados, frameworks e mais, cada um com suas próprias
+versões. Além das dependências, rodar tudo isso em uma única máquina pessoal e
+lembrar-se de desligar tudo no fim do dia ou quando estiver trabalhando em
+outros projetos também é inviável. O Vagrant fornece a você as ferramentas
+para construir ambientes de desenvolvimento únicos para cada projeto de uma
+vez, e depois facilmente derrubá-los e reconstruí-los apenas quando eles forem
+necessários para que você economize tempo e frustação.
 
-### For Teams
+### Para Equipes
 
-Each member of a team ideally has identical development environments: same dependencies, same
-versions, same configurations, same everything. But this is simply not true today. With database
-agnostic ORMs, multiple web server options, and fast-moving libraries, one team member may be using
-MySQL with one version of a library while another team member may be using PostgreSQL with another
-version of the same library. Or perhaps one team member's configuration for their server is slightly
-different. These are all real cases which are bound to cause real issues at some point down the road.
-Vagrant gives teams the ability to enforce a consistent and portable
-virtual development environment that is easy to create and quick to setup.
+Todos os membros de uma equipe idealmente têm ambientes de desenvolvimento
+idênticos: mesmas dependências, mesmas versões, mesmas configurações, mesmo
+tudo. Mas isso simplesmente não é a verdade atualmente. Com os ORMs agnósticos
+de banco de dados, múltiplas opções de servidors web e bibliotecas que evoluem
+rapidamente, um membro da equipe pode estar usando o MySQL com uma versão de
+uma biblioteca enquanto outro membro do time pode estar usando PostgreSQL com
+outra versão da mesma biblioteca. Ou talvez a configuração do servidor de um
+membro da equipe seja ligeiramente diferente. Todos esses são casos reais que
+estão destinados a causarem problemas reais em algum momento futuro. O Vagrant
+dá para as equipes a possibilidade de garantir um ambiente virtual de
+desenvolvimento consistente e portátil que seja fácil e rápido de criar.
 
-### For Companies
+### Para Empresas
 
-If you've ever maintained a large web application, one of the hardest parts is onboarding new resources.
-Message queues, caching, database servers and other infrastructure pieces mean a lot of installation
-and a lot more configuration (see [case-in-point: insanity](http://www.robbyonrails.com/articles/2010/02/08/installing-ruby-on-rails-passenger-postgresql-mysql-oh-my-zsh-on-snow-leopard-fourth-edition)). Vagrant gives you the tools to build a development environment once and then easily distribute it to
-new members of your development team so you can get them to work and saving time, money and frustration.
+Se você já fez manutenção em uma aplicação web grande, uma das partes mais
+difíceis é acrescentar novos recursos. Filas de mensagens, cache, servidores
+de banco de dados e outros pontos de infraestrutura significam uma série de
+instalações e um monte de outras configurações (veja [case-in-point: insanity](http://www.robbyonrails.com/articles/2010/02/08/installing-ruby-on-rails-passenger-postgresql-mysql-oh-my-zsh-on-snow-leopard-fourth-edition)).
+O Vagrant fornece a você as ferramentas para construir um ambiente de
+desenvolvimento uma vez e depois distribuí-lo facilmente para os novos membros
+da sua equipe de desenvolvimento, dessa forma você pode colocá-los para
+trabalhar e economizar tempo, dinheiro e frustação.
