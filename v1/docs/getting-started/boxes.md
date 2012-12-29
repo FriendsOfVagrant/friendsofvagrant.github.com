@@ -1,78 +1,81 @@
 ---
 layout: getting_started
-title: Getting Started - Boxes
+title: Começando - Boxes
 
 current: Boxes
-previous: Project Setup
+previous: Configuração do Projeto
 previous_url: /v1/docs/getting-started/setup.html
 next: SSH
 next_url: /v1/docs/getting-started/ssh.html
 ---
 # Boxes
 
-After project initialization, the first step is always to specify the
-_base box_ in the Vagrantfile. Vagrant doesn't create a virtual machine
-instance _completely_ from scratch. Instead, it imports a base image for
-a VM and builds off of that. This simplifes things greatly for Vagrant
-users since they don't have to spend time specifying tedious details
-such as memory capacity, hard disk capacity, network controllers, etc,
-and also allows customizable bases to build projects from.
+Depois da inicialização do projeto, o primeiro passo sempre é definir a
+_base box_ no Vagrantfile. O Vagrant não cria uma instância de máquina virtual
+_totalmente_ do zero. Em vez disso, ele importa uma imagem base para a VM e
+constrói a partir dela. Isso simplifica excelentemente as coisas para os
+usuários do Vagrant, pois eles não tem que perder tempo definindo detalhes
+entediantes como capacidade de memória, tamanho do disco rígido, controladores
+de rede etc., e também permite que sejam usadas bases personalizadas para
+construir o projeto em cima delas.
 
-The bases that Vagrant builds off are packaged as "boxes," which are
-basically tar packages in a specific format for Vagrant use. Anybody
-can create a box, and packaging will be covered specifically in the
-[packaging](/v1/docs/getting-started/packaging.html) section.
+As bases sobre as quais o Vagrant constrói são empacotadas como "boxes", que
+são basicamente pacotes tar em um formato específico para o Vagrant. Qualquer
+pessoa pode criar uma box, e o empacotamento será abordado de forma mais
+específica na seção [empacotamento](/v1/docs/getting-started/packaging.html).
 
-## Getting a Base Box
+## Conseguindo uma Base Box
 
-We've already packaged a base box which has a bare bones installation
-of Ubuntu Lucid (10.04) 32-bit. Note that if you already downloaded
-this box from the [overview page](/v1/docs/getting-started/index.html) you
-do not have to download it again.
+Nós já empacotamos uma base box que tem o esqueleto de uma instalação do
+Ubuntu Lucid (10.04) 32-bit. Perceba que, se você já fez o download dessa box
+na [página de visão geral](/v1/docs/getting-started/index.html), você não
+precisa baixá-la novamente.
 
-Vagrant supports adding boxes from both the local filesystem and an
-HTTP URL. Begin running the following command so it can begin downloading
-while box installation is covered in more detail:
+O Vagrant permite que se adicionem boxes tanto do sistema de arquivos local
+quando de uma URL HTTP. Comece executando o seguinte comando para que ele
+inicie o download enquanto abordamos a instalação da box em mais detalhes:
 
 {% highlight bash %}
 $ vagrant box add lucid32 http://files.vagrantup.com/lucid32.box
 {% endhighlight %}
 
-Installed boxes are global to the current vagrant installation. This
-means that once the `lucid32` box has been added, it can be used by
-multiple projects at the same time. Each project uses the box as a _base_ only, so once the
-project VM is created, modifications can be made without affecting other
-projects which may use the same box.
+As boxes instaladas são globais na instalação atual do vagrant. Isso significa
+que, uma vez que a box `lucid32` é adicionada, ela pode ser usada por vários
+projetos ao mesmo tempo. Todo projeto usa a box apenas como _base_, assim,
+depois que a VM do projeto for criada, ela pode sofrer modificações sem afetar
+os outros projetos que usem a mesma box.
 
-Note that the box is given its own name, in this case "lucid32." This name
-is used throughout Vagrant to reference that box from this point forward.
-The URL is only used when adding, but never again. And the filename of the
-box means nothing to the logical name given. It is simply a coincidence that
-the filename and logical name are equal in this case.
+Perceba que a box tem um nome próprio, nesse caso "lucid32". Esse nome é usado
+pelo Vagrant para referenciar aquela box desse ponto em diante. A URL é usada
+apenas quando está se fazendo a adição, depois nunca mais. E o nome do arquivo
+da box não tem nenhuma ligação com o nome lógico definido. É apenas uma
+coincidência que o nome do arquivo e o nome lógico sejam os mesmos nesse caso.
 
-## Removing Boxes
+## Removendo Boxes
 
-Just as easily as they're added, boxes can be removed as well (but note that
-deletion is permanent). The following is an example command to remove a box.
+Com a mesma facilidade com que elas são adicionadas, as boxes também podem ser
+removidas (mas note que essa exclusão é permanente). O comando seguinte é um
+exemplo de como remover uma box.
 
 {% highlight bash %}
 $ vagrant box remove my_box
 {% endhighlight %}
 
-If you tried to run this command, it will obviously fail, since you haven't
-added a box named "my_box" yet (or if you have, I'm sorry because you just
-deleted it forever).
+Se você tentar executar esse comando, ele irá falhar obviamente, pois você não
+adicionou ainda nenhuma box chamada "my_box" (ou, se você tiver adicionado,
+peço desculpas pois você acabou de excluí-la para sempre).
 
-Once a box is removed, no new virtual machines based on that box can be created,
-since it is completely deleted off the filesystem, but existing virtual machines
-which have already been spun up will continue to function properly.
+Quando uma box é removida, nenhuma nova máquina virtual baseada nessa box
+pode ser criada, pois ela foi excluída complementamente do sistema de
+arquivos, mas as máquinas virtuais existentes que já estavam rodando
+continuarão a funcionar normalmente.
 
-## Configuring the Project to use the Box
+## Configurando o Projeto para usar a Box
 
-Now that the lucid box has been successfully added to the Vagrant installation,
-we need to tell our project to use it as a base. This is done through the Vagrantfile.
-Open the Vagrantfile and paste the following contents into it. The function of
-the contents should be self-explanatory:
+Agora que a box lucid foi adicionada com sucesso à instalação do Vagrant,
+precisamos informar nosso projeto para usá-la como base. Isso é feito através
+do Vagrantfile. Abra o Vagrantfile e cole o seguinte conteúdo nele. A função
+do conteúdo deve ser auto-explicativa:
 
 {% highlight ruby %}
 Vagrant::Config.run do |config|
@@ -80,16 +83,18 @@ Vagrant::Config.run do |config|
 end
 {% endhighlight %}
 
-## Testing the Setup
+## Testando a Configuração
 
-So far, we've only specified a base. No ports have been forwarded, no custom provisioning
-has been done, etc. We literally just have one line of configuration in our Vagrantfile.
-But even so, we already have a fully functional virtual machine. You can see for yourself
-by running `vagrant up` which will create the environment. After a few minutes, you should
-have a fully running virtual machine. We haven't yet forwarded any ports and we haven't covered
-SSH yet, so you'll just have to take our word that it's working for now. Finally,
-when you're finished verifying the virtual machine, you can destroy everything with a
-`vagrant destroy`.
+Até agora nós apenas especificamos uma base. Nenhuma porta foi redirecionada,
+nenhum provisionamento personalizado foi feito etc. Nós literalmente temos
+apenas uma única linha de configuração no nosso Vagrantfile. Mesmo assim, já
+temos uma máquina virtual totalmente funcional. Você pode confirmar isso
+executando o comando `vagrant up`, que irá criar o ambiente. Depois de alguns
+minutos, você deverá estar com uma máquina virtual sendo executada. Ainda não
+fizemos o redirecionamento de nenhuma porta e também não falamos sobre o SSH,
+por isso, por enquanto, você vai ter que confiar em nossa palavra que tudo
+está funcionando. No fim, quando você tiver terminado de verificar a máquina
+virtual, você pode destruir tudo com o comando `vagrant destroy`.
 
 {% highlight bash %}
 $ vagrant up
