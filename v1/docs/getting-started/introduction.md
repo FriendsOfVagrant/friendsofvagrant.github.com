@@ -1,33 +1,39 @@
 ---
 layout: getting_started
-title: Getting Started - Introduction
+title: Começando - Introdução
 
-current: Introduction
-previous: Why Vagrant?
+current: Introdução
+previous: Por que o Vagrant?
 previous_url: /v1/docs/getting-started/why.html
-next: Project Setup
+next: Configuração do Projeto
 next_url: /v1/docs/getting-started/setup.html
 ---
-# Introduction
+# Introdução
+
+Essa parte inicial fará a introdução aos binários e ao Vagrantfile, que são
+usados de forma extensiva no controle do Vagrant. O restante dos guias de
+iniciação presume que se tenha esse conhecimento básico.
 
 This initial section will introduce the binaries and Vagrantfile, which are
 used extensively in controlling Vagrant. The remainder of the getting started
 guides assumes this basic knowledge.
 
-## Vagrant Binary
+## O Binário do Vagrant
 
-Once Vagrant is installed, it is typically controlled through the `vagrant`
-command line interface. The `vagrant` binary has many "subcommands" which can be
-invoked which handle all the functionality within Vagrant, such as `vagrant up`,
-`vagrant ssh`, and `vagrant package`, to name a few. To discover all the supported
-subcommands, just run `vagrant` alone, and it'll list them out for you.
+Depois de instalado, o Vagrant geralmente é controlado com o comando `vagrant`
+na interface de linha de comando. O binário `vagrant` tem muitos “subcomandos”
+que podem ser invocados para manipular todas as funcionalidades do Vagrant,
+como o `vagrant up`, o `vagrant ssh` e o `vagrant package`, só para listar
+alguns. Para descobrir todos os subcomandos suportados, execute `vagrant`
+apenas e todos serão listados para você.
 
-## The Vagrantfile
+## O Vagrantfile
 
-A `Vagrantfile` is to Vagrant as a `Makefile` is to Make. The `Vagrantfile` exists at the root
-of any Vagrant project and is used to configure and specify the behavior of
-Vagrant and the virtual machine it creates. A basic Vagrantfile is embedded below
-so you can get a brief idea of how it looks:
+Um `Vagrantfile` está para o Vagrant assim como um o `Makefile` está para o
+Make. O `Vagrantfile` fica na raiz de todo projeto Vagrant e é usado para
+configurar e definir o comportamento do Vagrant e da máquina virtual que ele
+cria. Segue um Vagrantfile básico para você ter um breve ideia de como ele se
+parece:
 
 {% highlight ruby %}
 Vagrant::Config.run do |config|
@@ -36,6 +42,6 @@ Vagrant::Config.run do |config|
 end
 {% endhighlight %}
 
-As you can see, a Vagrantfile is simply Ruby code which typically contains a Vagrant
-configuration block. For most commands, Vagrant will first load the project's
-Vagrantfile for configuration.
+Como você pode ver, um Vagrantfile é apenas um código Ruby, que em geral
+contém um bloco de configuração do Vagrant. Na maioria dos comandos, o Vagrant
+primeiramente carregará o Vagrantfile do projeto para configuração.
