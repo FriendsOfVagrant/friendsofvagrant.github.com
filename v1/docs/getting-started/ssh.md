@@ -1,28 +1,27 @@
 ---
 layout: getting_started
-title: Getting Started - SSH
+title: Começando - SSH
 
 current: SSH
 previous: Boxes
 previous_url: /v1/docs/getting-started/boxes.html
-next: Provisioning
+next: Provisionamento
 next_url: /v1/docs/getting-started/provisioning.html
 ---
 # SSH
 
-Even though Vagrant allows for a vast amount of configuration through its
-commands and the Vagrantfile, nothing beats the power of the command line.
-Sometimes you just have to get into the files and play around to get things
-working just right or to debug an application.
+Apesar do Vagrant permitir uma grande quantidade de configurações através de
+seus comandos e do Vagrantfile, nada supera o poder da linha de comando.
+Algumas vezes você tem que ir direto nos arquivos e brincar um pouco para
+fazer tudo funcionar do jeito certo ou então para depurar uma aplicação.
 
-Vagrant provides full SSH access to the virtual environments it creates
-through a single command: `vagrant ssh`. By running `vagrant ssh`, Vagrant
-will automatically drop you into a fully functional terminal shell (it
-really is just `ssh`  being run, there is no middle man involved in communicating
-from the VM to the host machine).
+O Vagrant fornece acesso SSH completo aos ambientes virtuais por meio de um
+único comando: `vagrant ssh`. Executando `vagrant ssh`, o Vagrant irá te
+mostrar automaticamente um terminal shell funcional (ele é realmente o `ssh`
+sendo executado, não tem nenhum intermediário na comunicação entre a VM e a
+máquina hospedeira).
 
-After running `vagrant ssh`, you should see something similar to the
-following:
+Depois de rodar `vagrant ssh`, você deve enxergar algo similar ao seguinte:
 
 {% highlight bash %}
 $ vagrant ssh
@@ -31,36 +30,38 @@ vagrant@vagrantup:~$
 {% endhighlight %}
 
 <div class="alert alert-block alert-notice">
-  <h3>Using Microsoft Windows?</h3>
+  <h3>Usando o Microsoft Windows?</h3>
   <p>
-    An SSH client is generally not distributed with Windows by default. Because of this,
-    if you are on Windows, Vagrant will instead output SSH authentication info
-    which you can use with your favorite SSH client, such as
+    Um cliente SSH em geral não é distribuído com o Windows por padrão. Por
+    isso, se você estiver no Windows, o Vagrant irá disponibilizar a
+    informação de autenticação SSH para que você possa usar com o seu cliente
+    SSH favorito, como o
     <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a>.
   </p>
   <p>
-    PuTTY may not recognize the <code>insecure_private_key</code> provided by
-    vagrant as a valid private key.  To remedy this, first grab the 
-    <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTYgen app</a>.  
-    Then use PuTTYgen and import the <code>insecure_private_key</code> (found
-    in the .vagrant.d dir in your home directory) and save a ppk file from that
-    private key.  Use the ppk file instead of the default one when SSHing into
-    your vagrant box.
+    O Putty pode não reconhecer como válida a <code>insecure_private_key</code>
+    fornecida pelo vagrant. Para consertar isso, primeiro instale o
+    <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">
+    PuTTYgen app</a>. Aí você irá utilizá-lo para importar a 
+    <code>insecure_private_key</code>(ela fica no diretório .vagrant.d no seu
+    diretório pessoal) e salvar um arquivo ppk a partir da chave privada. Use
+    o arquivo ppk em vez do modo padrão para conectar via SSH na sua box
+    vagrant.
   </p>
 </div>
 
-## Accessing the Project Files
+## Acessando os Arquivos do Projeto
 
-Vagrant bridges your application with the virtual environment by using a
-VirtualBox shared folder. The shared folder location on the virtual machine
-defaults to `/vagrant`, but can be changed. This can be verified by listing
-the files within that folder in the SSH session:
+O Vagrant liga sua aplicação com o ambiente virtual por meio de uma pasta
+compartilhada do VirtualBox. A localização da pasta compartilhada na máquina
+virtual por padrão é `/vagrant`, mas pode ser alterada. Essa ligação pode ser
+verificada listando os arquivos dessa pasta na sessão SSH:
 
 {% highlight bash %}
 vagrant@vagrantbase:~$ ls /vagrant
 index.html Vagrantfile
 {% endhighlight %}
 
-The VM has both read and write access to the shared folder.
+A VM tem acesso tanto de leitura quanto de escrita na pasta compartilhada.
 
-**Remember: Any changes are mirrored across both systems.**
+**Lembre-se: Qualquer mudança reflete em ambos os sistemas.**
