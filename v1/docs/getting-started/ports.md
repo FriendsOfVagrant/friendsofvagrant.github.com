@@ -1,60 +1,65 @@
 ---
 layout: getting_started
-title: Getting Started - Port Forwarding
+title: Começando - Redirecionamento de Portas
 
-current: Port Forwarding
-previous: Provisioning
+current: Redirecionamento de Portas
+previous: Provisionamento
 previous_url: /v1/docs/getting-started/provisioning.html
-next: Packaging
+next: Empacotamento
 next_url: /v1/docs/getting-started/packaging.html
 ---
-# Port Forwarding
+# Redirecionamento de Portas
 
-At this point we have a virtual environment running with Apache serving
-the basic web project. But so far we can only access it from within the
-VM, using the command line. Vagrant's goal is to provide the benefit of
-a virtualized environment without getting in your way. In order to access
-your project, Vagrant has a feature known as port forwarding.
+Nesse ponto nós temos um ambiente virtual sendo executado com o Apache
+servindo um projeto web básico. Mas até agora nós só podemos acessá-lo de
+dentro da VM, usando a linha de comando. O objetivo do Vagrant é fornecer
+o benefício de um ambiente virtualizado sem atrapalhar suas atividades. Para
+acessar seu projeto, o Vagrant possuiu uma função conhecida como
+redirecionamento de portas.
 
-Port forwarding allows you to specify ports on the guest machine to forward
-to the host machine. This enables you to access your web services using
-your own browser on your machine while the server actually sits and runs
-within a virtual machine.
+O redirecionamento de portas permite que você especifique na máquina guest
+portas para serem redirecionadas para a máquina host. Isso permite que você
+acesse seus web services usando seu próprio navegador da sua máquina enquanto
+o servidor é executado realmente dentro na máquina virtual.
 
-## Specifying a Forwarded Port
+## Especificando uma Porta Redirecionada
 
-In our case, we just want to forward Apache. Port forwarding is specified
-in the Vagrantfile, like so:
+No nosso caso, queremos redirecionar apenas o Apache. O redirecionamento
+da porta é especificado no Vagrantfile da seguinte forma:
 
 {% highlight ruby %}
 Vagrant::Config.run do |config|
-  # Forward guest port 80 to host port 4567
+  # Redireciona a porta 80 do guest para a porta 4567 do host
   config.vm.forward_port 80, 4567
 end
 {% endhighlight %}
 
-`forward_port` is a method which takes two arguments:
+`forward_port` é um método que recebe dois argumentos:
 
-* **guest port** - The port on the virtual machine.
-* **host port** - The port on your local machine you want to use to access
-  the guest port.
+* **guest port** - A porta na máquina virtual.
+* **host port** - A porta na máquina local que você quer usar para acessar
+  a porta guest.
 
-## Applying Forwarded Ports
+## Aplicando as Portas Redirecionadas
 
-Forwarded ports are applied during `vagrant up` like any other configuration.
-But if you already have a running system, calling `vagrant reload` will
-apply them without re-importing and re-building everything.
+As portas redirecionadas são aplicadas durante o `vagrant up` como qualquer
+outra configuração. Mas se você já estiver rodando um sistema, chamar o
+`vagrant reload` irá aplicar os redirecionamentos sem ter que reimportar ou
+reconstruir tudo.
 
-Note that forwarding ports requires a virtual machine restart since VirtualBox
-won't pick up on the forwarded ports until it is completely restarted.
+Observe que o redirecionamento de portas precisa de um reinício da máquina
+virtual, uma vez que o VirtualBox não aplica o redirecionamento até que
+ele seja completamente reiniciado.
 
-## Results!
+## Resultados!
 
-After running `vagrant up`, you should be able to take your
-regular old browser to `localhost:4567` and see the index page we created
-earlier. At this point, we have a fully functional VM ready for development for
-a basic HTML website. It should be clear to see that if PHP, Rails, etc.
-were setup, you could be developing those technologies as well.
+Depois de executar o `vagrant up`, você deve conseguir acessar com seu bom e
+velho navegador o endereço `localhost:4567` e enxergar a página index que
+criamos anteriormente. Nesse ponto, temos uma VM totalmente funcional pronta
+para desenvolvimento de um site HTML básico. Deve estar claro que se o PHP, ou
+o Rails etc. tivessem sido configurados, você também poderia estar
+desenvolvendo com essas tecnologias.
 
-For fun, you can also edit the `index.html` file, save it, refresh your
-browser, and immediately see your changes served directly from your VM.
+Por diversão, você também pode editar o arquivo `index.html`, salvá-lo,
+atualizar seu navegador e imediatamente enxergar suas alterações sendo
+servidas diretamente da sua VM.
