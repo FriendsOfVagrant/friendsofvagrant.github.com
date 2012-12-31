@@ -1,87 +1,90 @@
 ---
 layout: getting_started
-title: Getting Started - Packaging
+title: Começando - Empacotamento
 
-current: Packaging
-previous: Port Forwarding
+current: Empacotamento
+previous: Redirecionamento de Portas
 previous_url: /v1/docs/getting-started/ports.html
-next: Teardown
+next: Desmontagem
 next_url: /v1/docs/getting-started/teardown.html
 ---
-# Packaging
+# Empacotamento
 
-With the virtual machine working and ready, we're ready to get to work.
-But let's assume in this situation that you have other team members, and
-you want to share the same virtual environment with them. Let's package this
-new environment into a box for them so they can get up and running
-with just a few keystrokes.
+Com a máquina virtual funcionando e pronta, estamos prontos para trabalhar.
+Mas vamos supor que você tem outras pessoas em sua equipe, e que você quer
+compartilhar o mesmo ambiente virtual com eles. Vamos empacotar esse novo
+ambiente dentro de uma box para eles, assim eles podem começar a trabalhar
+com apenas alguns comandos.
 
-Packages are exported images of your current virtual environment which
-can be easily distributed. They're typically suffixed with a "box" extension,
-hence they are known as box files. Optionally, Vagrantfiles can be included
-with boxes, which can be used to specify forwarded ports, shared folders, etc.
+Os pacotes são imagens exportadas do seu ambiente virtual atual que podem ser
+distribuídas facilmente. Eles geralmente são sufixados com uma extensão "box",
+por isso eles são conhecidos como arquivos box. Opcionalmente, Vagrantfiles
+podem ser incluídos nas boxes de modo a especificar portas redirecionadas,
+pastas compartilhadas etc.
 
-Before working through the rest of this page, make sure the virtual environment
-is built by running `vagrant up`.
+Antes de continuar seguindo pelo restante desta página, tenha certeza que o
+ambiente virtual já foi criado pelo comando `vagrant up`.
 
-## Creating the Vagrantfile
+## Criando um Vagrantfile
 
-First, we're going to create a basic Vagrantfile we'll package with the
-box which will forward the web port. This way, users of the box can simply
-add the box, do a `vagrant up`, and have everything working, including HTTP!
-Create a new file, which will be the file used as the Vagrantfile for the
-box. Name the file `Vagrantfile.pkg` and put the following contents in it:
+Primeiro, vamos criar um Vagrantfile básico que iremos empacotar com a box
+para redirecionar a porta web. Dessa forma, os usuários da box podem
+simplesmente adicionar a box, rodar um `vagrant up` e tudo estará funcionando,
+incluindo o HTTP! Crie um novo arquivo, que será usado como o Vagrantfile da
+box. Nomeie o arquivo como `Vagrantfile.pkg` e ponha nele o seguinte conteúdo:
+
 
 {% highlight ruby %}
 Vagrant::Config.run do |config|
-  # Forward apache
+  # Redirecione o apache
   config.vm.forward_port 80, 8080
 end
 {% endhighlight %}
 
 <div class="info">
-  <h3>What's with the MAC address?</h3>
+  <h3>O que é o endereço MAC?</h3>
   <p>
-    When an OS is installed, it typically sets up the MAC address associated
-    with the <code>eth0</code> network interface, which allows the VM to connect to the
-    internet. But when importing a base, VirtualBox changes the MAC address
-    to something new, which breaks <code>eth0</code>. The MAC address of the base must
-    be persisted in the box Vagrantfile so that Vagrant can setup the MAC address
-    to ensure internet connectivity.
+    Quando um sistema operacional é instalado, ele geralmente define o endereço
+    MAC associado à interface de rede <code>eth0</code>, o que permite que
+    a VM se conecte à internet. Mas quando importamos uma base, o VirtualBox
+    altera o endereço para um novo, o que quebra a <code>eth0</code>. O
+    endereço MAC da base precisa ser persistido no Vagrantfile da box para que
+    o Vagrant possa configurar o endereço MAC para garantir a conectividade da
+    internet.
   </p>
 </div>
 
-## Packaging the Project
+## Empacotando o Projeto
 
-Run the following code to package the environment up:
+Execute o código a seguir para empacotar o ambiente:
 
 {% highlight bash %}
 $ vagrant package --vagrantfile Vagrantfile.pkg
 {% endhighlight %}
 
-`vagrant package` takes the virtual environment from the current project
-and packages it into a `package.box` file in the same directory. The
-`--vagrantfile` option tells `vagrant package` to include the port
-forwarding lines in `Vagrantfile.pkg` inside the box, so that VMs
-created using the box will automatically have port forwarding configured
-for them, without the user having to edit their VM's `Vagrantfile`
-(Boxes have their own `Vagrantfile` -- for more details on how this
-works, see the [documentation for
-Vagrantfiles](http://vagrantup.com/v1/docs/vagrantfile.html)).
+O `vagrant package` pega o ambiente virtual do projeto atual e o empacota
+num arquivo `package.box` no mesmo diretório. A opção `--vagrantfile` indica
+ao `vagrant package` para incluir as linhas do redirecionamento de portas do
+`Vagrantfile.pkg` dentro da box, assim as VMs criadas usando essa box terão
+automaticamente o redirecionamento de portas configurado para elas, sem que
+o usuário tenha que editar o `Vagrantfile` das suas VMs (as boxes tem seus
+próprios `Vagrantfiles` -- para mais detalhes sobre como isso funciona, veja a
+[documentação dos Vagrantfiles](http://vagrantup.com/v1/docs/vagrantfile.html)).
 
-## Distributing the Box
+## Distribuindo a Box
 
-Vagrant currently supports installing boxes from local file path or from
-HTTP. If the box you're distributing has private data on it (such as a
-company's web application or client work for freelancers), then you should
-keep the box on a secure filesystem where the public cannot access it.
+O Vagrant atualmente suporta a instalação de boxes do sistema de arquivos
+local ou via HTTP. Se a box que você estiver distribuindo tiver dados privados
+nela (como uma aplicação web da empresa, ou um trabalho de um cliente de um
+freelance), então você deveria a box em um sistema de arquivos seguro onde
+o acesso não seja público.
 
-If the box you're distributing is meant to be public, HTTP is the best
-resource to upload to, so that anyone can easily download it.
+Se a box que você estiver distribuindo destina-se a ser pública, o HTTP é o
+melhor recurso para ela, assim qualquer um pode baixá-la facilmente.
 
-Once the box is in place, other developers can add it and use it just
-like any other box. The example below is from the point of view of a new
-developer on your team using your newly packaged box:
+Uma vez que a box estiver no lugar, outros desenvolvedores podem adicioná-la
+e utilizá-la como qualquer outra box. O exemplo abaixo é seguindo a visão de
+um novo desenvolvedor na sua equipe usando sua box recentemente empacotada:
 
 {% highlight bash %}
 $ vagrant box add my_box /path/to/the/package.box
@@ -89,8 +92,8 @@ $ vagrant init my_box
 $ vagrant up
 {% endhighlight %}
 
-At this point, they should have a fully functional environment which exactly
-mirrors the environment set up in previous steps of the guide. Notice that
-they didn't have to do provisioning or set up anything on their system
-(other than Vagrant), etc. Distributing development environments has never
-been so easy.
+Nesse ponto, eles devem ter um ambiente totalmente funcional, que reflete
+exatamente o ambiente configurado nos passos anteriores deste guia. Observe que
+eles não precisaram fazer nenhum provisionamento, nem configurar nada em
+seus sistemas etc. (além do Vagrant). Distribuir ambientes de desenvolvimento
+nunca foi tão fácil.
