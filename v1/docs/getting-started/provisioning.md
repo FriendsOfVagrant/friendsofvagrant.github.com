@@ -1,74 +1,80 @@
 ---
 layout: getting_started
-title: Getting Started - Provisioning
+title: Começando - Provisionamento
 
-current: Provisioning
+current: Provisionamento
 previous: SSH
 previous_url: /v1/docs/getting-started/ssh.html
-next: Port Forwarding
+next: Redirecionamento de Portas
 next_url: /v1/docs/getting-started/ports.html
 ---
-# Provisioning
+# Provisionamento
 
-Boxes aren't always going to be one-step setups for your Vagrant environment.
-Often times boxes will be used as a base for a more complicated setup. For
-example: Perhaps you're creating a web application which also uses AMQP and
-some custom background worker daemons. In this situation, it would be easiest
-to use the base box, but then add the custom software on top of it (and then
-packaging it so others can more easily make use of it, but we'll cover this
-later).
+As boxes nem sempre são configuradas em único passo no seu ambiente Vagrant.
+Na maioria das vezes as boxes serão utilizadas como uma base para uma
+configuração mais complicada. Por exemplo: talvez você esteja criando uma
+aplicação web que usa o AMQP e alguns worker daemons personalizados no
+background. Nessa situação, seria mais fácil usar a box base e então adicionar
+o software personalizado em cima dela (e depois empacotar tudo para que outros
+possam utilizar o pacote mais facilmente, vamos abordar isso mais à frente).
 
-Luckily, Vagrant comes with provisioning built right into the software by
-using [chef](http://www.opscode.com/chef), either [chef solo](http://wiki.opscode.com/display/chef/Chef+Solo)
-and [chef server](http://wiki.opscode.com/display/chef/Chef+Server), or [Puppet](http://www.puppetlabs.com/puppet) or
-you can also [extend vagrant](/v1/docs/provisioners/others.html) to support more provisioners, but this is an advanced topic
-which we won't cover here.
+Felizmente, o Vagrant já vem com provisionamento embutido no código, seja
+usando o [chef](http://www.opscode.com/chef), tanto o
+[chef solo](http://wiki.opscode.com/display/chef/Chef+Solo)
+quanto o [chef server](http://wiki.opscode.com/display/chef/Chef+Server), ou
+usando o [Puppet](http://www.puppetlabs.com/puppet), ou ainda você pode
+[estender o vagrant](/v1/docs/provisioners/others.html) para suportar mais
+provisionadores, um tópico avançado que não será abordado aqui.
 
-For our basic HTML website, we're going to show you how to use both Chef or Puppet provisioning to setup Apache
-to serve the website. Note that you should choose which you want to try (either Chef or Puppet),
-or try both, but be sure to `destroy` and `up` your VM in between tries
-so you start with a clean slate.
+Para nosso site HTML básico, vamos mostrar como você pode usar o
+provisionamento, Chef e Puppet, para configurar o Apache para servir um site.
+Observe que você deveria escolher qual deles testar (ou o Chef ou o Puppet),
+ou testar ambos, no entanto garanta que você executou um `destroy` e um `up` na
+sua VM entre os testes, assim você iniciará em um ambiente limpo.
 
-## Configuring Chef and the Vagrant
+## Configurando o Chef e o Vagrant
 
-Since a tutorial on how to use Chef is out of scope for this getting started
-guide, I've prepackaged the cookbooks for you for provisioning. You just have
-to configure your Vagrantfile to point to them:
+Como um tutorial de como usar o Chef está fora do escopo deste guia de
+iniciação, empacotamos previamente os cookbooks para seu provisionamento. Você
+tem apenas que configurar seu Vagrant para apontar para ele:
 
 {% highlight ruby %}
 Vagrant::Config.run do |config|
   config.vm.box = "lucid32"
 
-  # Enable and configure the chef solo provisioner
+  # Habilita e configura o provisionador chef solo
   config.vm.provision :chef_solo do |chef|
-    # We're going to download our cookbooks from the web
+    # Vamos baixar nossos cookbooks da web
     chef.recipe_url = "http://files.vagrantup.com/getting_started/cookbooks.tar.gz"
 
-    # Tell chef what recipe to run. In this case, the `vagrant_main` recipe
-    # does all the magic.
+    # Diga ao chef qual recipe será executada. Nesse caso, a receita `vagrant_main`
+    # faz toda a mágica.
     chef.add_recipe("vagrant_main")
   end
 end
 {% endhighlight %}
 
-Note that while we use a URL to download the cookbooks for this getting
-started project, you can also put cookbooks in a local directory, which is
-nice for storing your cookbooks in version control with your project. More
-details on this can be found in the [chef solo documentation](/v1/docs/provisioners/chef_solo.html).
+Observe que apesar de usarmos uma URL para baixar os cookbooks desse nosso
+projeto, você também pode colocar os cookbooks em um diretório local, o que é
+interessante para armazenar seus cookbooks num controle de versão junto do seu
+projeto. Mais detalhes sobre o assunto podem ser encontrados na
+[documentação do chef solo](/v1/docs/provisioners/chef_solo.html).
 
-## Configuring Puppet and the Vagrant
 
-Alternatively, you can use Puppet to configure Apache.  To do this we create
-a directory called `manifests` (in the root where your Vagrantfile is located)
-and create a file to hold our Puppet configuration, for example `default.pp`.
+## Configurando o Puppet e o Vagrant
 
-Note both the path and file name are configurable but Vagrant will default
-to `manifests/default.pp`.
+Alternativamente, você pode usar o Puppet para configurar o Apache. Para isso
+criamos um diretório chamado `manifests` (na raiz onde o Vagrantfile está
+localizado) e criamos um arquivo para manter nossa configuração do Puppet,
+por exemplo `default.pp`.
 
-The manifest file will contain the required Puppet configuration, for example:
+Veja que tanto o caminho quanto o nome do arquivo pode ser configurado, mas o
+Vagrant deixa como padrão `manifests/default.pp`.
+
+O arquivo manifesto conterá a configuração necessária do Puppet, por exemplo:
 
 {% highlight ruby %}
-# Basic Puppet Apache manifest
+# Manifesto Puppet básico para Apache
 
 class apache {
   exec { 'apt-get update':
@@ -88,36 +94,40 @@ class apache {
 include apache
 {% endhighlight %}
 
-We then add support in the Vagrantfile to support Puppet provisioning:
+Aí então adicionamos no Vagrantfile o suporte ao provisionamento Puppet:
 
 {% highlight ruby %}
 Vagrant::Config.run do |config|
   config.vm.box = "lucid32"
 
-  # Enable the Puppet provisioner
+  # Habilita o provisionador Puppet
   config.vm.provision :puppet
 end
 {% endhighlight %}
 
-Alternatively you can run Puppet in client-server mode by enabling the `:puppet_server` provisioner.  See the [Puppet Server](/v1/docs/provisioners/puppet_server.html) documentation for more details.
+Alternativamente você pode executar o Puppet no modo cliente-servidor
+habilitando o provisionador `:puppet_server`. Veja a documentação do
+[Puppet Server](/v1/docs/provisioners/puppet_server.html) para mais detalhes.
 
-**Note:** The Puppet example above is not quite equivalent to the Chef example,
-Apache isn't properly configured to serve our `/vagrant` directory. The main
-purpose here is to show you how Puppet provisioning works with Vagrant. You
-can imagine how you would configure Apache further to serve from the `/vagrant`
-directory.
+**Observação:** O exemplo Puppet acima não é totalmente equivalente ao exemplo
+com o Chef, pois o Apache não está sendo configurado adequadamente para servir
+nosso diretório `/vagrant`. O principal objetivo aqui é mostrar como o
+provisionamento Puppet funciona com o Vagrant. Você pode imaginar como poderia
+configurar o Apache mais à frente para que ele sirva o diretório `/vagrant`.
 
-## Running it!
+## Executando!
 
-With provisioning configured, just run `vagrant up` to create your environment
-and Vagrant will automatically provision it. If your environment is already
-running since you did an `up` in a previous step, just run `vagrant reload`,
-which will quickly restart your VM, skipping the import step.
+Com o provisionamento configurado, apenas execute `vagrant up` para criar seu
+ambiente e o Vagrant irá automaticamente provisioná-lo. Se seu ambiente já
+estiver sendo executado por causa de algum `up` em um passo anterior, execute
+apenas `vagrant reload`, o que irá reiniciar rapidamente sua VM, ignorando o
+passo de importação.
 
-After Vagrant completes running, the web server will be up and running as well.
-You can't see your website from your own browser yet, since we haven't covered
-port forwarding, but you can verify that the provisioning works by SSHing into
-the VM and checking the output of hitting `127.0.0.1`:
+Depois que o Vagrant completar a execução, o servidor web estará instalado e
+também sendo executado. Você ainda não poderá enxergar seu site de um
+navegador, pois ainda não abordamos o redirecionamento de portas, mas você pode
+confirmar que o provisionamento funciona acessando por SSH sua VM e
+verificando a saída no IP `127.0.0.1`:
 
 {% highlight bash %}
 $ vagrant ssh
@@ -127,11 +137,12 @@ vagrant@vagrantup:~$ wget -qO- 127.0.0.1
 vagrant@vagrantup:~$
 {% endhighlight %}
 
-This works because the scripts for the provisioners above were written to
-modify the `DocumentRoot` for Apache to point to your `/vagrant` directory.
-The exact details of how this was done is specific to each provisioner and
-out of scope for the purpose of this getting started guide. For more
-information, I recommend looking into Chef or Puppet.
+Isso funciona porque os script para dos provisionadores acima foram escritos
+para modificar o `DocumentRoot` do Apache para apontar para o seu diretório
+`/vagrant`. Os detalhes exatos de como isso foi feito são específicos para
+cada provisionador e estão fora do escopo e do objetivo desse guia de
+iniciação. Para mais informações, recomendamos investigar sobre o Chef e o
+Puppet.
 
-In the next step of the getting started guide, we'll show you how to view
-your website using your own browser.
+No próximo passo do guia de iniciação, vamos mostrar como acessar seu site
+usando seu próprio navegador.
