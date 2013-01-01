@@ -1,36 +1,38 @@
 ---
 layout: about
-title: About Vagrant
+title: Sobre o Vagrant
 
-current: About
+current: Sobre
 ---
 <div class="alert alert-block alert-info">
-  <strong>Note:</strong> This page talks about the Vagrant project itself.
-  If instead you're looking for documentation on what Vagrant is and how
-  to get started, please view the <a href="/v1/docs/getting-started/index.html">
-  getting started guide.</a>
+  <strong>Observação:</strong> Essa página fala sobre o projeto Vagrant em si.
+  Se em vez isso você estiver procurando pela documentação sobre o que o
+  Vagrant é e como começar a utilizá-lo, vá para o 
+  <a href="/v1/docs/getting-started/index.html">guia de iniciação.</a>
 </div>
 
-# About Vagrant
+# Sobre o Vagrant
 
-Vagrant is a free and open source project. The vision of the project
-is to create a tool to transparently manage all the complex parts
-of modern development within a virtual environment without affecting
-the everyday workflow of the developer too much.
+O Vagrant é um projeto livre e de código aberto. A visão do projeto é criar
+uma ferramenta que gerencie de forma transparente todas as partes complexas
+do desenvolvimento moderno com ambientes virtuais sem afetar demais o fluxo de
+trabalho diário do desenvolvedor.
 
-Vagrant was started on [January 21, 2010](https://github.com/mitchellh/vagrant/commit/050bfd9c686b06c292a9614662b0ab1bbf652db3)
-by [Mitchell Hashimoto](https://github.com/mitchellh) and
-[John Bender](http://johnbender.us/). The first release of Vagrant
-soon followed with version 0.1.0 being released on
-[March 7, 2010](https://github.com/mitchellh/vagrant/commit/296f234b50440b81adc8b75160591e199572d06d).
+O Vagrant foi criado em [21 de janeiro de 2010](https://github.com/mitchellh/vagrant/commit/050bfd9c686b06c292a9614662b0ab1bbf652db3)
+por [Mitchell Hashimoto](https://github.com/mitchellh) e
+[John Bender](http://johnbender.us/). A primeira versão do Vagrant
+lançada foi a 0.1.0 em
+[7 de março de 2010](https://github.com/mitchellh/vagrant/commit/296f234b50440b81adc8b75160591e199572d06d).
 
-Today, Vagrant is considered stable and is used by many thousands
-of people worldwide. The vision of Vagrant is still unchanged, and
-continues to move towards an ambitious goal of moving all development
-into virtualized environments by making it easier to do so than not
-to. Additionally, work is ongoing to have Vagrant run identically
-on every major consumer OS platform (Linux, Mac OS X, and Windows).
+Hoje, o Vagrant é considerado estável e é usado por por milhares de pessoas
+no mundo inteiro. A visão do Vagrant se mantém inalterada, e avança em
+direção ao seu objetivo ambicioso de colocar todo o desenvolvimento para
+ambientes virtualizados tornando isso mais fácil do que não fazê-lo.
+Adicionalmente, o trabalho continua para que o Vagrant rode de forma idêntica
+em todas as principais plaformas e sistemas operacionais consumidos (Linux,
+Mac OS X e Windows).
 
-Vagrant development is not backed by any single company, and developers
-work on Vagrant on their own free time. Much of the work and help towards
-developing Vagrant is thanks to generous [contributions](/contribute/index.html).
+O desenvolvimento do Vagrant não é apoiado por apenas uma única empresa, e os
+desenvolvedores trabalham no Vagrant em seu tempo livre. Muito do trabalho e
+da ajuda que move o desenvolvimento do Vagrant é graças as generosas
+[contribuições](/contribute/index.html).
