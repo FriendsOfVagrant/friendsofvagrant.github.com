@@ -1,13 +1,12 @@
 ---
 layout: default
-title: Documentation
+title: Documentação
 ---
 
-<h1 class="top">Documentation</h1>
+<h1 class="top">Documentação</h1>
 
-Documentation for Vagrant is split into various sections depending what
-version you are using:
+A documentação para o Vagrant é dividida em várias seções, dependento da versão que você está usando:
 
-* [Stable documentation](/v1/docs/index.html) for Vagrant 1.0.x.
-* [Experimental series documentation](/v2/docs/index.html) for
+* [DOcumentação da série estavél](/v1/docs/index.html) para Vagrant 1.0.x.
+* [Documentação da série experimental](/v2/docs/index.html) para
   Vagrant 1.x.
