@@ -14,10 +14,6 @@ Essa parte inicial fará a introdução aos binários e ao Vagrantfile, que são
 usados de forma extensiva no controle do Vagrant. O restante dos guias de
 iniciação presume que se tenha esse conhecimento básico.
 
-This initial section will introduce the binaries and Vagrantfile, which are
-used extensively in controlling Vagrant. The remainder of the getting started
-guides assumes this basic knowledge.
-
 ## O Binário do Vagrant
 
 Depois de instalado, o Vagrant geralmente é controlado com o comando `vagrant`
