@@ -1,17 +1,16 @@
 # [friendsofvagrant.github.com](http://friendsofvagrant.github.com)
 
-Tradução da documentação do Vagrant para português do Brasil . O Vagrant é uma
-ferramenta para criar e distribuir ambientes de desenvolvimento virtualizados.
+Tradução da documentação do Vagrant para português do Brasil .
+
+O Vagrant é uma ferramenta para criar e distribuir ambientes de desenvolvimento
+virtualizados.
 
 ## Contribuindo com a tradução da documentação oficial do Vagrant:
 
 ### Informando os documentos que deseja traduzir
 
 Para melhor organização, primeiro informar o(s) documento(s) que pretende
-ajudar na tradução e/ou revisão na planilha de tradutores/revisores:
-https://docs.google.com/spreadsheet/ccc?key=0AjRfOAFDl97mdHN5ZVNyY0xOVkxXbG50Zy1IcG52UGc#gid=0
-
-Se ainda não possuir acesso de edição nesta planilha, solicitar o acesso para rogeriopradoj at gmail dot com.
+ajudar na tradução e/ou revisão na Wiki do repositório: [https://github.com/FriendsOfVagrant/friendsofvagrant.github.com/wiki](https://github.com/FriendsOfVagrant/friendsofvagrant.github.com/wiki)
 
 ### Utilizando o Git e o Github
 
@@ -32,7 +31,8 @@ tradução para o português no github:
 
     2.2. Após completar o clone do repositório, ele terá o nome remoto
     "origin". Não confundir, apesar do nome ser origin ele não está apontando
-    para o repo master, mas sim para o seu fork no github.
+    para o repo master, mas sim para o seu fork no github. E é isso mesmo que
+    queremos.
 
 3. Pronto, agora é só trabalhar na tradução do(s) documento(s).Sempre crie um
 branch para a tradução que estiver fazendo. Isso porque é sempre interessante
